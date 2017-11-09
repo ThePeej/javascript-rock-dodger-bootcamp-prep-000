@@ -33,11 +33,12 @@ function checkCollision(rock) {
     const rockRightEdge = rockLeftEdge + 20;
 
 
-    if ((rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerLeftEdge) ||
-        (rockRightEdge >=dodgerRightEdge) && rockLeftEdge <= dodgerRightEdge) ||
-        (rockLeftEdge >= dodgerLeftEdge) && rockRightEdge <= dodgerRightEdge)) {
-      return true
-    }
+    if (
+      (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerLeftEdge) ||
+      (rockRightEdge >=dodgerRightEdge && rockLeftEdge <= dodgerRightEdge) ||
+      (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge)) {
+        return true
+      }
   }
 }
 
@@ -46,15 +47,13 @@ function createRock(x) {
 
   rock.className = 'rock'
   rock.style.left = `${x}px`
-
-  // Hmmm, why would we have used `var` here?
   var top = 0
   rock.style.top = top
   GAME.appendChild(rock);
 
   function moveRock() {
     rock.style.top = `${top += 2}px`;
-    if (checkCollision()) {
+    if (checkCollision(rock)) {
       return endGame();
     }
 
@@ -81,10 +80,17 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
-  ROCKS = [];
+  clearInterval(gameInterval)
+
+  ROCKS.forEach(function(rock) { rock.remove() })
+
+  document.removeEventListener('keydown', moveDodger)
+
+  START.innerHTML = `Score: ${score}`
+  START.style.display = 'inline'
 
   alert('You will dodge no more.');
-  alert(`Score: ${score}`);
+
 }
 
 function moveDodger(e) {
