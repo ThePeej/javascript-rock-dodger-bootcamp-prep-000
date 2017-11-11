@@ -88,6 +88,7 @@ function endGame() {
 
   START.innerHTML = `Score: ${score}`
   START.style.display = 'inline'
+  let score = 0;
 
   alert('You will dodge no more.');
 
