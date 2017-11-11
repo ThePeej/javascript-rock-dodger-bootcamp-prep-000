@@ -88,10 +88,10 @@ function endGame() {
 
   START.innerHTML = `Score: ${score}`
   START.style.display = 'inline'
-  let score = 0;
-  ROCKS = [];
 
   alert('You will dodge no more.');
+  let score = 0;
+  ROCKS = [];
 
 }
 
