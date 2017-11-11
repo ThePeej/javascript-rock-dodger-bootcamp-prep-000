@@ -90,8 +90,8 @@ function endGame() {
   START.style.display = 'inline'
 
   alert('You will dodge no more.');
-  let score = 0;
-  ROCKS = [];
+  ///let score = 0;
+  ///ROCKS = [];
 
 }
 
